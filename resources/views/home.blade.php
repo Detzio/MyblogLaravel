@@ -4,13 +4,13 @@
 <div class="container">
     <!-- Carousel pour les promotions -->
     <div id="promotionCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicateurs du carousel -->
+        <!-- Indicateurs -->
         <ol class="carousel-indicators">
             @foreach($promotions as $key => $promotion)
                 <li data-target="#promotionCarousel" data-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}"></li>
             @endforeach
         </ol>
-        
+    
         <!-- Wrapper pour les slides -->
         <div class="carousel-inner">
             @foreach($promotions as $key => $promotion)
@@ -34,13 +34,18 @@
             <span class="sr-only">Suivant</span>
         </a>
     </div>
-    
+
     <!-- Affichage des catégories -->
     <div class="row mt-4">
         @foreach($categories as $category)
-            <div class="col-md-4">
-                <h3>{{ $category->name }}</h3>
-                <!-- Lien vers la catégorie -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset('storage/category_images/' . $category->image) }}" class="card-img-top" alt="{{ $category->name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $category->name }}</h5>
+                        <a href="{{ route('category.products', $category->id) }}" class="btn btn-primary">Voir les produits</a>
+                    </div>
+                </div>
             </div>
         @endforeach
     </div>

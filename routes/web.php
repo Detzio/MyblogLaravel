@@ -15,7 +15,7 @@ Route::get('/', function () {
      return dd(env('DB_DATABASE'));
  });
 
- Route::get('/', [HomeController::class, 'index']);
+ Route::get('/', [HomeController::class, 'index'])->name('home');
 
  
 
