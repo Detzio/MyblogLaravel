@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('session_id')->nullable();
             $table->enum('status', ['active', 'validated', 'abandoned'])->default('active');
-            $table->adress('address')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }

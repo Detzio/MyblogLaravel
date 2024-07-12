@@ -16,18 +16,37 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">Accueil</a>
+                        </li>
+                        <!-- Dropdown pour les produits -->
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdownProducts" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Produits
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownProducts">
+                                <a class="dropdown-item" href="{{ route('category.products', ['category' => 'electronics']) }}">Électronique</a>
+                                <a class="dropdown-item" href="{{ route('cart.show', ['category' => 'clothing']) }}">Vêtements</a>
+                                <!-- Ajoutez d'autres catégories de produits selon vos besoins -->
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cart.show') }}">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cart.show') }}">Panier</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -37,13 +56,9 @@
                             @endif
 
                             @if (Route::has('register'))
-                                <!-- More content here -->
+                                <!-- Insérer d'autres liens pour l'enregistrement ici si nécessaire -->
                             @endif
                         @endguest
-                        <!-- Ajout du lien vers le panier ici -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cart.show') }}">Panier</a>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -54,9 +69,9 @@
         </main>
     </div>
 
-    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <!-- jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
