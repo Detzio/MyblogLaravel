@@ -1,8 +1,7 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -13,6 +12,8 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->string('name'); // Ajoute une colonne pour le nom de la catégorie
+            $table->text('description')->nullable(); // Ajoute une colonne pour la description, qui peut être nulle
             $table->timestamps();
         });
     }
