@@ -15,39 +15,44 @@
         <div class="carousel-inner">
             @foreach($promotions as $key => $promotion)
                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                    <img src="http://images6.fanpop.com/image/photos/38600000/Minions-despicable-me-minions-38654503-1600-1200.jpg" class="d-block w-100" alt="{{ $promotion->name }}">
+                    <img src="{{ $promotion->image_url }}" class="d-block w-100 img-fluid" style="height: 400px;" alt="{{ $promotion->name }}">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>{{ $promotion->name }}</h5>
-                        <p>{{ $promotion->description }}</p>
+                        <h5 style="color: black;">{{ $promotion->name }}</h5>
+                        <p style="color: black;">{{ $promotion->description }}</p>
+                    </div>                    
+                </div>
+            @endforeach
+        </div>
+    
+        <!-- Contrôles du carousel -->
+        <a class="carousel-control-prev" href="#promotionCarousel" role="button" data-slide="prev" style="color: black;">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#promotionCarousel" role="button" data-slide="next" style="color: black;">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    
+</div>
+    
+    <section>
+        <h3>Categories</h3>
+        <!-- Affichage des catégories -->
+        <div class="row mt-4">
+            @foreach($categories as $category)
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $category->name }}</h5>
+                            <p class="card-text">{{ $category->description }}</p>
+                            <a href="{{ route('category.products', $category->id) }}" class="btn btn-primary">Voir les produits</a>
+                        </div>
                     </div>
                 </div>
             @endforeach
         </div>
-        
-        <!-- Contrôles du carousel -->
-        <a class="carousel-control-prev" href="#promotionCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Précédent</span>
-        </a>
-        <a class="carousel-control-next" href="#promotionCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Suivant</span>
-        </a>
-    </div>
-
-    <!-- Affichage des catégories -->
-    <div class="row mt-4">
-        @foreach($categories as $category)
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ asset('storage/category_images/' . $category->image) }}" class="card-img-top" alt="{{ $category->name }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $category->name }}</h5>
-                        <a href="{{ route('category.products', $category->id) }}" class="btn btn-primary">Voir les produits</a>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
+    </section>
 </div>
 @endsection

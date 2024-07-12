@@ -37,3 +37,10 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: black; /* Change arrow color */
+    border-radius: 100px;
+    margin: 1rem;
+}
