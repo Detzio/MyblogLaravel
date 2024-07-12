@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Product; // Assurez-vous d'utiliser le bon namespace pour votre modèle Product
-use Illuminate\Support\Str;
 use Faker\Factory as Faker;
 
 class ProductSeeder extends Seeder
@@ -15,8 +14,7 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        // Obtenir une instance de Faker
-        $faker = \Faker\Factory::create();
+        $faker = Faker::create();
 
         // Créer 10 produits factices
         for ($i = 0; $i < 10; $i++) {
@@ -24,8 +22,10 @@ class ProductSeeder extends Seeder
                 'name' => $faker->word,
                 'description' => $faker->sentence,
                 'price' => $faker->randomFloat(2, 10, 1000), // Prix avec 2 décimales, entre 10 et 1000
-                'promotion_price' => $faker->randomFloat(2, 10, 1000),
-                'image_url' => $faker->sentence,
+                'category_id' => $faker->numberBetween(1, 5), // Supposons que vous avez 5 catégories
+                'is_promotion' => $faker->boolean, // Valeur booléenne aléatoire
+                'promotion_price' => $faker->randomFloat(2, 5, 500), // Prix promotionnel, assurez-vous qu'il est logique par rapport au prix normal
+                'image_url' => $faker->imageUrl(), // URL d'image factice
             ]);
         }
     }

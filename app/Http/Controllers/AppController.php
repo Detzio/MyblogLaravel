@@ -27,4 +27,8 @@ class AppController extends Controller
         // Vous pouvez passer des données supplémentaires à la vue si nécessaire.
         return view('app');
     }
+    public function Contact()
+    {
+        return view('contact');
+    }
 }

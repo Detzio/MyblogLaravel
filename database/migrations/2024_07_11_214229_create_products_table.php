@@ -17,8 +17,10 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('price', 8, 2);
             $table->boolean('is_promotion')->default(false);
-            $table->decimal('promotion_price', 8, 2);
+            $table->decimal('promotion_price', 8, 2)->nullable(); // Make nullable if promotion price might not always be set
             $table->string('image_url');
+            $table->unsignedBigInteger('category_id'); // Add this line for the category ID
+            $table->foreign('category_id')->references('id')->on('categories'); // Add this line to set the foreign key constraint
             $table->timestamps();
         });
     }
@@ -28,6 +30,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropForeign(['category_id']); // Drop the foreign key constraint
+            $table->dropColumn('category_id'); // Remove the category_id column
+        });
         Schema::dropIfExists('products');
     }
 };

@@ -14,5 +14,13 @@ class Category extends Model
         'description',
     ];
 
+    /**
+     * Obtient les produits associés à la catégorie.
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
     // Ajoutez d'autres méthodes et propriétés selon vos besoins
 }

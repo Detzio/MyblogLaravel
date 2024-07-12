@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Models\Product;
 use App\Models\Category;
 use APP\Models\Cart;
@@ -16,14 +17,18 @@ Route::get('/', function () {
  });
 
 // ---APP CONTROLLER---
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 // ---CATEGORY CONTROLLER---
-// Route pour afficher la liste des categories
-Route::resource('categories', CategoryController::class);
+// Route pour afficher la liste des catégories et permettre les opérations CRUD de base
+Route::resource('categories', CategoryController::class)->except(['show']);
+
 // Route pour afficher une catégorie spécifique et ses produits
-Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
-// Category products route
-Route::get('/category/{category}/products', [CategoryController::class, 'products'])->name('category.products');
+// Utilisez un nom de route différent pour éviter les conflits avec la route 'show' générée par Route::resource
+Route::get('/categories/{id}/details', [CategoryController::class, 'show'])->name('categories.show');
+
+// Route pour afficher les produits d'une catégorie spécifique
+Route::get('/categories/{category}/products', [CategoryController::class, 'products'])->name('category.products');
 
 // ---PRODUCT CONTROLLER---
 Route::resource('products', ProductController::class);
@@ -38,16 +43,16 @@ Route::post('/cart/validate', [App\Http\Controllers\CartController::class, 'vali
 
 // ---AUTH CONTROLLER---
 // Route pour afficher le formulaire de connexion/inscription
-Route::get('/auth', function () {return view('Auth');})->name('auth.show');
+Route::get('/auth', [App\Http\Controllers\AuthController::class, 'show'])->name('auth.show');
 
 // Route pour gérer la soumission du formulaire de connexion
-Route::post('/login', 'Auth\LoginController@login')->name('login');
+Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
 
 // Route pour gérer la soumission du formulaire d'inscription
-Route::post('/register', 'Auth\RegisterController@register')->name('register');
+Route::post('/register', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
 
 // Route pour la déconnexion
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
 // ---HOME CONTROLLER---
 // Route pour afficher la page d'accueil

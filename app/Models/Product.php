@@ -15,6 +15,15 @@ class Product extends Model
         'price',
         'is_promotion',
         'promotion_price',
-        'image_url'
+        'image_url',
+        'category_id', // Ajoutez cette ligne
     ];
+
+    /**
+     * Obtient la catégorie associée au produit.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

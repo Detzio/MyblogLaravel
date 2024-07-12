@@ -32,13 +32,14 @@
                                 Produits
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownProducts">
-                                <a class="dropdown-item" href="{{ route('category.products', ['category' => 'electronics']) }}">Électronique</a>
-                                <a class="dropdown-item" href="{{ route('cart.show', ['category' => 'clothing']) }}">Vêtements</a>
+                                @foreach($categories as $category)
+                                    <a class="dropdown-item" href="{{ route('category.products', $category->id) }}">{{ $category->name }}</a>
+                                @endforeach
                                 <!-- Ajoutez d'autres catégories de produits selon vos besoins -->
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cart.show') }}">Contact</a>
+                            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cart.show') }}">Panier</a>
@@ -47,19 +48,20 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('auth.show') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+                    <!-- Authentication Links -->
+                    @guest
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('auth.show') }}">{{ __('Login') }}</a>
+                            </li>
+                        @endif
 
-                            @if (Route::has('register'))
-                                <!-- Insérer d'autres liens pour l'enregistrement ici si nécessaire -->
-                            @endif
-                        @endguest
-                    </ul>
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('auth.show') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+                    @endguest
                 </div>
             </div>
         </nav>

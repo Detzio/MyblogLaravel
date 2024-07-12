@@ -31,6 +31,11 @@ class CategoryController extends Controller
         $categories = Category::all();
         return view('categories.index', compact('categories'));
     }
+    public function showHomePage()
+{
+    $categories = Category::all(); // Assurez-vous d'avoir le modèle Category correctement configuré
+    return view('app', compact('categories'));
+}
 
     public function create()
     {
@@ -71,6 +76,13 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
+    }
+    public function boot()
+    {
+        // Register a view composer that binds categories to all views
+        View::composer('*', function ($view) {
+            $view->with('categories', Category::all());
+        });
     }
 }
 
