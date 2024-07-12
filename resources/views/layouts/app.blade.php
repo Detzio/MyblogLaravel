@@ -40,6 +40,10 @@
                                 <!-- More content here -->
                             @endif
                         @endguest
+                        <!-- Ajout du lien vers le panier ici -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cart.show') }}">Panier</a>
+                        </li>
                     </ul>
                 </div>
             </div>

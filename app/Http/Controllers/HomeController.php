@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Promotion;
 
+
 class HomeController extends Controller
 {
     public function index()

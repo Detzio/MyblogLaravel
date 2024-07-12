@@ -2,9 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController; 
-use App\Http\Controllers\Promotion;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CartController;
 use App\Models\Product;
 use App\Models\Category;
+use APP\Models\Cart;
+use App\Models\CartItem;
 
 
 
@@ -17,15 +21,25 @@ Route::get('/', function () {
      return dd(env('DB_DATABASE'));
  });
 
+// Home route
  Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
- Route::resource('promotions', PromotionController::class);
+// Product and category routes
  Route::resource('products', ProductController::class);
  Route::resource('categories', CategoryController::class);
 
+// Category products route
  Route::get('/category/{category}/products', [CategoryController::class, 'products'])->name('category.products');
- 
+
+// Cart routes
+Route::post('/cart/add', [App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart', [App\Http\Controllers\CartController::class, 'showCart'])->name('cart.show');
+Route::post('/cart/checkout', [App\Http\Controllers\CartController::class, 'validateCart'])->name('cart.checkout');
+Route::delete('/cart/remove/{id}', [App\Http\Controllers\CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::get('/cart/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('cart.checkout');
+Route::post('/cart/validate', [App\Http\Controllers\CartController::class, 'validateCart'])->name('cart.validate');
+
  /* -------------------------------------
       --Exemple de route simple--
 Route::redirect('/test', '/');
