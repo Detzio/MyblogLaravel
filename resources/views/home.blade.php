@@ -15,7 +15,7 @@
         <div class="carousel-inner">
             @foreach($promotions as $key => $promotion)
                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                    <img src="{{ $promotion->image_url }}" class="d-block w-100 img-fluid" style="height: 400px;" alt="{{ $promotion->name }}">
+                    <img src="{{ $promotion->image_url }}" class="d-block w-100 img-fluid" style="height: 400px; object-fit: contain;" alt="{{ $promotion->name }}">
                     <div class="carousel-caption d-none d-md-block">
                         <h5 style="color: black;">{{ $promotion->name }}</h5>
                         <p style="color: black;">{{ $promotion->description }}</p>
