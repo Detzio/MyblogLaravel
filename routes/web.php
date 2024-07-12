@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 
 
+
 Route::get('/', function () {
     return view('welcome');
  });
@@ -20,8 +21,11 @@ Route::get('/', function () {
 
 
  Route::resource('promotions', PromotionController::class);
+ Route::resource('products', ProductController::class);
+ Route::resource('categories', CategoryController::class);
 
-
+ Route::get('/category/{category}/products', [CategoryController::class, 'products'])->name('category.products');
+ 
  /* -------------------------------------
       --Exemple de route simple--
 Route::redirect('/test', '/');
