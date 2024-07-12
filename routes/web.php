@@ -38,9 +38,7 @@ Route::post('/cart/validate', [App\Http\Controllers\CartController::class, 'vali
 
 // ---AUTH CONTROLLER---
 // Route pour afficher le formulaire de connexion/inscription
-Route::get('/auth', function () {
-    return view('Auth');
-})->name('auth.show');
+Route::get('/auth', function () {return view('Auth');})->name('auth.show');
 
 // Route pour gérer la soumission du formulaire de connexion
 Route::post('/login', 'Auth\LoginController@login')->name('login');
@@ -57,17 +55,6 @@ Route::get('/', [AppController::class, 'index'])->name('App');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // ---ADMIN CONTROLLER---
-
-
-
-
-
-
-
-
- Route::get('/', function () {
-     return dd(env('DB_DATABASE'));
- });
  
 
  /* -------------------------------------

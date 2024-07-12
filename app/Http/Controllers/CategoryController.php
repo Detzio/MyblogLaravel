@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
 
+    public function products(Category $category)
+    {
+        // Récupère les produits associés à la catégorie
+        $products = $category->products;
+
+        // Retourne une vue et passe les produits à cette vue
+        return view('category', compact('category', 'products'));
+    }
+
     public function show($id)
     {
         // Récupère la catégorie par son ID et précharge ses produits associés
