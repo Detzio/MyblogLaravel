@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('price', 8, 2);
             $table->boolean('is_promotion')->default(false);
+            $table->decimal('promotion_price', 8, 2);
+            $table->string('image_url');
             $table->timestamps();
         });
     }

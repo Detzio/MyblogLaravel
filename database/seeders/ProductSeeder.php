@@ -24,6 +24,8 @@ class ProductSeeder extends Seeder
                 'name' => $faker->word,
                 'description' => $faker->sentence,
                 'price' => $faker->randomFloat(2, 10, 1000), // Prix avec 2 décimales, entre 10 et 1000
+                'promotion_price' => $faker->randomFloat(2, 10, 1000),
+                'image_url' => $faker->sentence,
             ]);
         }
     }

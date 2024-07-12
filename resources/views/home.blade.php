@@ -15,7 +15,7 @@
         <div class="carousel-inner">
             @foreach($promotions as $key => $promotion)
                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                    <img src="{{ $promotion->image_url }}" class="d-block w-100" alt="{{ $promotion->name }}">
+                    <img src="http://images6.fanpop.com/image/photos/38600000/Minions-despicable-me-minions-38654503-1600-1200.jpg" class="d-block w-100" alt="{{ $promotion->name }}">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>{{ $promotion->name }}</h5>
                         <p>{{ $promotion->description }}</p>
