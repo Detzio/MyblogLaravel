@@ -14,6 +14,19 @@ Route::get('/', function () {
     return view('welcome');
  });
 
+// Route pour afficher le formulaire de connexion/inscription
+Route::get('/auth', function () {
+    return view('Auth');
+})->name('auth.show');
+
+// Route pour gérer la soumission du formulaire de connexion
+Route::post('/login', 'Auth\LoginController@login')->name('login');
+
+// Route pour gérer la soumission du formulaire d'inscription
+Route::post('/register', 'Auth\RegisterController@register')->name('register');
+
+// Route pour la déconnexion
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
  Route::get('/', function () {
      return dd(env('DB_DATABASE'));
