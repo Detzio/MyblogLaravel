@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AppController;
 use App\Models\Product;
 use App\Models\Category;
 use APP\Models\Cart;
@@ -14,6 +15,28 @@ Route::get('/', function () {
     return view('welcome');
  });
 
+// ---APP CONTROLLER---
+
+// ---CATEGORY CONTROLLER---
+// Route pour afficher la liste des categories
+Route::resource('categories', CategoryController::class);
+// Route pour afficher une catégorie spécifique et ses produits
+Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
+// Category products route
+Route::get('/category/{category}/products', [CategoryController::class, 'products'])->name('category.products');
+
+// ---PRODUCT CONTROLLER---
+Route::resource('products', ProductController::class);
+
+// ---CART CONTROLLER---
+Route::post('/cart/add', [App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart', [App\Http\Controllers\CartController::class, 'showCart'])->name('cart.show');
+Route::post('/cart/checkout', [App\Http\Controllers\CartController::class, 'validateCart'])->name('cart.checkout');
+Route::delete('/cart/remove/{id}', [App\Http\Controllers\CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::get('/cart/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('cart.checkout');
+Route::post('/cart/validate', [App\Http\Controllers\CartController::class, 'validateCart'])->name('cart.validate');
+
+// ---AUTH CONTROLLER---
 // Route pour afficher le formulaire de connexion/inscription
 Route::get('/auth', function () {
     return view('Auth');
@@ -28,28 +51,24 @@ Route::post('/register', 'Auth\RegisterController@register')->name('register');
 // Route pour la déconnexion
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
+// ---HOME CONTROLLER---
+// Route pour afficher la page d'accueil
+Route::get('/', [AppController::class, 'index'])->name('App');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// ---ADMIN CONTROLLER---
+
+
+
+
+
+
+
+
  Route::get('/', function () {
      return dd(env('DB_DATABASE'));
  });
-
-// Home route
- Route::get('/', [HomeController::class, 'index'])->name('home');
-
-
-// Product and category routes
- Route::resource('products', ProductController::class);
- Route::resource('categories', CategoryController::class);
-
-// Category products route
- Route::get('/category/{category}/products', [CategoryController::class, 'products'])->name('category.products');
-
-// Cart routes
-Route::post('/cart/add', [App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.add');
-Route::get('/cart', [App\Http\Controllers\CartController::class, 'showCart'])->name('cart.show');
-Route::post('/cart/checkout', [App\Http\Controllers\CartController::class, 'validateCart'])->name('cart.checkout');
-Route::delete('/cart/remove/{id}', [App\Http\Controllers\CartController::class, 'removeFromCart'])->name('cart.remove');
-Route::get('/cart/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('cart.checkout');
-Route::post('/cart/validate', [App\Http\Controllers\CartController::class, 'validateCart'])->name('cart.validate');
+ 
 
  /* -------------------------------------
       --Exemple de route simple--

@@ -35,9 +35,10 @@ Affichage du panier :
 Récupérez le panier de la session ou de l'utilisateur.
 Affichez les produits, les quantités et les prix.
 Calculez le total de la commande.
+
 Validation du panier :
 
-Vérifiez les informations de paiement.
+Saisir l'adresse de livraison >>>> Ajouter un champ d'adresse dans la table cart
 Marquez le panier comme validé ou créez une commande basée sur le panier.
 
 4. Routes et contrôleurs
